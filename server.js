@@ -14,10 +14,14 @@ mongoose.connect(process.env.DB_URL, {
     console.log(err);
 });
 
-app.on('connected', () => {
-    const port = 3333;
+const routes = require('./routes');
 
-    app.listen(port, () => {
-        console.log(`App is running at http://localhost:${port}`);
-    });
+app.use(routes);
+
+app.on('connected', () => {
+  const port = 3333;
+
+  app.listen(port, () => {
+      console.log(`App is running at http://localhost:${port}`);
+  });
 });
