@@ -18,7 +18,7 @@ const { resolve } = require('path');
 const hbs = require('hbs');
 const helmet = require('helmet');
 const csrf = require('csurf');
-const { checkCsrfError } = require('./src/middlewares/global')
+const { checkCsrfError, csrfToken } = require('./src/middlewares/csrf')
 
 app.use(helmet());
 app.use(csrf());
