@@ -11,7 +11,7 @@ mongoose.connect(process.env.DB_URL, {
     app.emit('connected'),
     console.log('Database connected successfully');
 }).catch((err) => {
-    console.log(err);
+    console.log(err)
 });
 
 const routes = require('./routes');
