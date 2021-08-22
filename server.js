@@ -17,8 +17,10 @@ const routes = require('./routes');
 const { resolve } = require('path');
 const hbs = require('hbs');
 const helmet = require('helmet');
+const csrf = require('csurf');
 
 app.use(helmet());
+app.use(csrf());
 app.use(routes);
 
 app.engine('.hbs', hbs.__express);
