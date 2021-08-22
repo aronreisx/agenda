@@ -16,7 +16,9 @@ mongoose.connect(process.env.DB_URI, {
 const routes = require('./routes');
 const { resolve } = require('path');
 const hbs = require('hbs');
+const helmet = require('helmet');
 
+app.use(helmet());
 app.use(routes);
 
 app.engine('.hbs', hbs.__express);
