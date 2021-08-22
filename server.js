@@ -18,9 +18,11 @@ const { resolve } = require('path');
 const hbs = require('hbs');
 const helmet = require('helmet');
 const csrf = require('csurf');
+const { checkCsrfError } = require('./src/middlewares/global')
 
 app.use(helmet());
 app.use(csrf());
+app.use(checkCsrfError());
 app.use(routes);
 
 app.engine('.hbs', hbs.__express);
