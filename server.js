@@ -5,8 +5,7 @@ const mongoose = require('mongoose');
 
 mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true,
-    user: process.env.DB_USER,
-    pass: process.env.DB_PASS
+    useUnifiedTopology: true
 }).then(() => {
     app.emit('connected'),
     console.log('Database connected successfully');
