@@ -23,6 +23,7 @@ const { checkCsrfError } = require('./src/middlewares/global')
 app.use(helmet());
 app.use(csrf());
 app.use(checkCsrfError());
+app.use(csrfToken());
 app.use(routes);
 
 app.engine('.hbs', hbs.__express);
