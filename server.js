@@ -27,7 +27,7 @@ app.use(csrfToken());
 app.use(routes);
 
 app.engine('.hbs', hbs.__express);
-hbs.registerPartials(resolve(__dirname, 'src', 'views', 'partials'))
+hbs.registerPartials(resolve(__dirname, 'src', 'views', 'partials'));
 
 app.set('views', resolve(__dirname, 'src', 'views'));
 app.set('view engine', '.hbs');
