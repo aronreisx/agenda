@@ -14,15 +14,15 @@ mongoose.connect(process.env.DB_URI, {
 });
 
 const routes = require('./routes');
-const path = require('path');
+const { resolve } = require('path');
 const hbs = require('hbs');
 
 app.use(routes);
 
 app.engine('.hbs', hbs.__express);
-hbs.registerPartials(path.resolve(__dirname, 'src', 'views', 'partials'))
+hbs.registerPartials(resolve(__dirname, 'src', 'views', 'partials'))
 
-app.set('views', path.resolve(__dirname, 'src', 'views'));
+app.set('views', resolve(__dirname, 'src', 'views'));
 app.set('view engine', '.hbs');
 
 app.on('connected', () => {
