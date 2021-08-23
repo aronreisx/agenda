@@ -18,8 +18,23 @@ const { resolve } = require('path');
 const hbs = require('hbs');
 const helmet = require('helmet');
 const csrf = require('csurf');
-const { checkCsrfError, csrfToken } = require('./src/middlewares/csrf')
+const { checkCsrfError, csrfToken } = require('./src/middlewares/csrf');
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+const sessionOptions = session({
+  secret: process.env.SESSION_SECRET,
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    httpOnly: true
+  }
+});
+
+app.use(sessionOptions);
 app.use(helmet());
 app.use(csrf());
 app.use(checkCsrfError());
