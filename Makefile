@@ -6,7 +6,8 @@ mongo-run:
 	-p ${DB_PORT}:27017 \
 	-v ${PWD}/database:/data/db \
 	-e MONGO_INITDB_ROOT_USERNAME=${DB_USER} \
-    -e MONGO_INITDB_ROOT_PASSWORD=${DB_USER} \
+  -e MONGO_INITDB_ROOT_PASSWORD=${DB_USER} \
+  -e MONGO_INITDB_DATABASE=${DB_NAME} \
 	--name ${DB_CONTAINER} \
 	mongo:latest
 
