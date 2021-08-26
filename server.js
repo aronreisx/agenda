@@ -3,15 +3,17 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.DB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => {
-    app.emit('connected'),
-    console.log('Database connected successfully');
-}).catch((err) => {
-    console.log(err)
-});
+const dbConnection = mongoose.createConnection(`mongodb://${DB_HOST}:${DB_PORT}`, {
+  dbName:DB_NAME,
+  user:DB_USER,
+  pass:DB_PASS,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+}).then((connection) => {
+  app.emit('db_connected');
+  console.log('Database connected successfully.');
+}).catch((err) => console.log(err));
 
 const routes = require('./routes');
 const { resolve } = require('path');
