@@ -1,1 +1,52 @@
-<h1>Wellcome to my website</h1>
+
+{{> head }}
+{{> nav }}
+
+<main class="container">
+  <div class="row">
+    <div class="col-8 mx-auto my-3">
+      <h1 class="display-1 text-center">Agenda</h1>
+      <p class="text-center lead">
+        Edit and create new contacts below.
+      </p>
+      <div class="row">
+        <div class="col my-3">
+          <div class="alert alert-danger">An error here!</div>
+        </div>
+      </div>
+
+      <div class="responsive-table">
+
+        <table class="table my-2">
+          <tr>
+            <td>Name</td>
+            <td>Surname</td>
+            <td>Phone</td>
+            <td>E-mail</td>
+          </tr>
+{{!--
+          {{each contatos}}
+
+          <tr>
+            <td>{{name}}</td>
+            <td>{{surname}}</td>
+            <td>{{phone}}</td>
+            <td>{{email}}</td>
+            <td><a href="#">Edit</a></td>
+            <td><a href="#" class="text-danger">Delete</a></td>
+          </tr>
+
+          {{else}}
+
+          <p class="text-center lead">There's no contacts in your Agenda</p>
+
+          {{/each}} --}}
+
+        </table>
+
+      </div>
+    </div>
+  </div>
+</main>
+
+{{> footer }}
