@@ -25,25 +25,23 @@ const csrf = require('csurf');
 const { checkCsrfError, csrfToken } = require('./src/middlewares/csrf');
 
 const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo');
 
 const sessionOptions = session({
-  secret: process.env.SESSION_SECRET,
-  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  store: MongoStore.create({
+    mongoUrl: `mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}`,
+    dbName: DB_NAME,
+  }),
+  secret: SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000*60*60*24*7,
     httpOnly: true
   }
 });
 
-app.use(sessionOptions);
-app.use(helmet());
-app.use(csrf());
-app.use(checkCsrfError());
-app.use(csrfToken());
-app.use(routes);
+app.use(sessionOptions)
 
 app.engine('.hbs', hbs.__express);
 hbs.registerPartials(resolve(__dirname, 'src', 'views', 'partials'));
