@@ -1,10 +1,12 @@
-export default checkCsrfError = (err, req, res, next) => {
-  if(err && err.code === 'EBADCSRFTOKEN') {
-    return res.status(403).render('403');
+exports.checkCsrfError = (err, req, res, next)=>{
+  if(err.code == 'EBADCSRFTOKEN'){
+    console.log(err.code);
+    return res.render('403');
   }
-}
+  next();
+};
 
-export default csrfToken = (req, res, next) => {
+exports.csrfMiddleware = (req, res, next) => {
   res.locals.csrfToken = req.csrfToken();
   next();
 };
