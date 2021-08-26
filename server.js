@@ -23,7 +23,12 @@ const hbs = require('hbs');
 const helmet = require('helmet');
 const flash = require('connect-flash');
 const csrf = require('csurf');
-const { checkCsrfError, csrfToken } = require('./src/middlewares/csrf');
+const { checkCsrfError, csrfMiddleware } = require('./src/middlewares/csrf');
+const { flashMessages } = require('./src/middlewares/flashMessages');
+
+app.use(helmet());
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
@@ -50,10 +55,15 @@ hbs.registerPartials(resolve(__dirname, 'src', 'views', 'partials'));
 app.set('views', resolve(__dirname, 'src', 'views'));
 app.set('view engine', '.hbs');
 
-app.on('connected', () => {
-  const port = 3333;
+app.use(csrf());
+app.use(flash());
+app.use(flashMessages);
+app.use(checkCsrfError);
+app.use(csrfMiddleware);
+app.use(routes);
 
-  app.listen(port, () => {
-      console.log(`App is running at http://localhost:${port}`);
+app.on('db_connected', () => {
+  app.listen(SERVER_PORT, () => {
+      console.log(`App is running at http://localhost:${SERVER_PORT}`);
   });
 });
