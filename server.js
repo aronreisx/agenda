@@ -21,6 +21,7 @@ const routes = require('./routes');
 const { resolve } = require('path');
 const hbs = require('hbs');
 const helmet = require('helmet');
+const flash = require('connect-flash');
 const csrf = require('csurf');
 const { checkCsrfError, csrfToken } = require('./src/middlewares/csrf');
 
