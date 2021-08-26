@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
+const { SERVER_PORT, DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS, SECRET } = process.env;
+
 const dbConnection = mongoose.createConnection(`mongodb://${DB_HOST}:${DB_PORT}`, {
   dbName:DB_NAME,
   user:DB_USER,
