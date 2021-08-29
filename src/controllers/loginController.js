@@ -3,5 +3,5 @@ exports.index = (req, res) => {
 };
 
 exports.register = (req, res) => {
-  res.send('hello');
+  res.send(req.body);
 };
