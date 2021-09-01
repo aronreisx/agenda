@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-const { SERVER_PORT, DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS, SECRET } = process.env;
+const { SERVER_PORT, DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS, SESSION_SECRET } = process.env;
 
 const dbConnection = mongoose.connect(`mongodb://${DB_HOST}:${DB_PORT}`, {
   dbName:DB_NAME,
@@ -37,10 +37,9 @@ const MongoStore = require('connect-mongo');
 
 const sessionOptions = session({
   store: MongoStore.create({
-    mongoUrl: `mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}`,
-    dbName: DB_NAME,
+    clientPromise: dbConnection,
   }),
-  secret: SECRET,
+  secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: {
