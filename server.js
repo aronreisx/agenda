@@ -53,6 +53,9 @@ app.use(sessionOptions)
 app.engine('.hbs', hbs.__express);
 hbs.registerPartials(resolve(__dirname, 'src', 'views', 'partials'));
 
+const flashHasMessage = require('./src/helpers/flashHasMessage')
+hbs.registerHelper('hasMessage', flashHasMessage);
+
 app.set('views', resolve(__dirname, 'src', 'views'));
 app.set('view engine', '.hbs');
 
