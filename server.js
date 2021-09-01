@@ -5,16 +5,18 @@ const mongoose = require('mongoose');
 
 const { SERVER_PORT, DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASS, SECRET } = process.env;
 
-const dbConnection = mongoose.createConnection(`mongodb://${DB_HOST}:${DB_PORT}`, {
+const dbConnection = mongoose.connect(`mongodb://${DB_HOST}:${DB_PORT}`, {
   dbName:DB_NAME,
   user:DB_USER,
   pass:DB_PASS,
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false
-}).then((connection) => {
+  useFindAndModify: false,
+  useCreateIndex: true,
+}).then((data) => {
   app.emit('db_connected');
   console.log('Database connected successfully.');
+  return data.connection.getClient();
 }).catch((err) => console.log(err));
 
 const routes = require('./routes');
