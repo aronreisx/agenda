@@ -1,5 +1,30 @@
 include .env
 
+.PHONY: run
+run:
+	docker-compose up -d
+
+.PHONY: stop
+stop:
+	docker-compose down
+
+.PHONY: logs
+logs:
+	docker-compose logs -f
+
+.PHONY: compose-restart
+compose-restart: docker-compose restart agenda
+
+.PHONY: server-restart
+server-restart:
+	docker-compose restart server
+
+.PHONY: db-restart
+db-restart:
+	docker-compose restart db
+
+
+
 .PHONY: mongo-run
 mongo-run:
 	docker run -d \
