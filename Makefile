@@ -22,3 +22,12 @@ mongo-terminal:
 .PHONY: mongo-logs
 mongo-logs:
 	docker logs ${DB_CONTAINER}
+
+.PHONY: mongo-wipe-all
+mongo-wipe-all:
+	docker rm -fv ${DB_CONTAINER} && \
+	rm -rf database
+
+.PHONY: remove-modules
+remove-modules:
+	rm -rf node_modules
