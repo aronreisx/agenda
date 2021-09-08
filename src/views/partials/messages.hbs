@@ -1,0 +1,27 @@
+{{#if (arrayContains errors)}}
+
+<div class="row">
+  <div class="col">
+    <div class="alert alert-danger">
+      {{#each errors}}
+        {{this}} <br>
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+{{/if}}
+
+{{#if (arrayContains success)}}
+
+<div class="row">
+  <div class="col">
+    <div class="alert alert-success">
+      {{#each success}}
+        {{this}} <br>
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+{{/if}}
