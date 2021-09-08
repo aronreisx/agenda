@@ -1,0 +1,44 @@
+
+{{> head }}
+{{> nav }}
+
+<main class="container">
+  <div class="row">
+    <div class="col-lg-8 my-5 mx-auto">
+      <h1 class="text-center">Contacts</h1>
+      <p class="text-center lead">You contacts are below.</p>
+
+      {{> messages }}
+
+      {{#if contact._id}}
+      <form action='/contact/edit/{{contact._id}}' method="POST">
+      {{else}}
+      <form action='/contact/register/{{contact._id}}' method="POST">
+      {{/if}}
+
+        <input type='hidden' name='_csrf' value='{{csrfToken}}'>
+        <div class="form-group mb-3 mt-4">
+          <label class="lead">Name</label>
+          <input type='text' value='{{contact.name}}' class='form-control' name='name' />
+        </div>
+        <div class="form-group my-3">
+          <label class="lead">Surname</label>
+          <input type='text' value='{{contact.surname}}' class='form-control' name='surname' />
+        </div>
+        <div class="form-group my-3">
+          <label class="lead">Email</label>
+          <input type='email' value='{{contact.email}}' class='form-control' name='email' />
+        </div>
+        <div class="form-group my-3">
+          <label class="lead">Phone</label>
+          <input type='tel' value='{{contact.phone}}' class='form-control' name='phone' />
+        </div>
+        <button type="submit" class="btn btn-primary my-3">
+          Save
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
+
+{{> footer }}
