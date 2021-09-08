@@ -7,15 +7,11 @@
     <div class="col-8 mx-auto my-3">
       <h1 class="display-1 text-center">Agenda</h1>
       <p class="text-center lead">
-        Edit and create new contacts below.
+        Edit and add new contacts to your Agenda
       </p>
-      <div class="row">
-        <div class="col my-3">
-          <div class="alert alert-danger">An error here!</div>
-        </div>
-      </div>
-
-      <div class="responsive-table">
+      {{> messages }}
+      {{#if (arrayContains contacts)}}
+      <div class="responsive-table mt-5">
 
         <table class="table my-2">
           <tr>
@@ -24,27 +20,26 @@
             <td>Phone</td>
             <td>E-mail</td>
           </tr>
-{{!--
-          {{each contatos}}
+
+          {{#each contacts }}
 
           <tr>
-            <td>{{name}}</td>
-            <td>{{surname}}</td>
-            <td>{{phone}}</td>
-            <td>{{email}}</td>
-            <td><a href="#">Edit</a></td>
-            <td><a href="#" class="text-danger">Delete</a></td>
+            <td>{{this.name}}</td>
+            <td>{{this.surname}}</td>
+            <td>{{this.phone}}</td>
+            <td>{{this.email}}</td>
+            <td><a href='/contact/index/{{this._id}}'>Edit</a></td>
+            <td class="text-danger"><a href='/contact/delete/{{this._id}}' class="text-danger">Delete</a></td>
           </tr>
 
-          {{else}}
-
-          <p class="text-center lead">There's no contacts in your Agenda</p>
-
-          {{/each}} --}}
-
+          {{/each}}
         </table>
+      </div
 
-      </div>
+      {{else}}
+          <p class="text-center lead">There's no contacts in your Agenda</p>
+      {{/ if}}
+
     </div>
   </div>
 </main>
