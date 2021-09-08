@@ -14,6 +14,7 @@ const dbConnection = mongoose.connect(`mongodb://${DB_HOST}:${DB_PORT}`, {
   useFindAndModify: false,
   useCreateIndex: true,
 }).then((data) => {
+  console.log(data.connection.getClient());
   app.emit('db_connected');
   console.log('Database connected successfully.');
   return data.connection.getClient();
@@ -27,6 +28,7 @@ const flash = require('connect-flash');
 const csrf = require('csurf');
 const { checkCsrfError, csrfMiddleware } = require('./src/middlewares/csrf');
 const { flashMessages } = require('./src/middlewares/flashMessages');
+const { sessionUserToLocals } = require('./src/middlewares/sessionUserToLocals');
 
 app.use(helmet());
 app.use(express.urlencoded({extended:true}));
@@ -38,6 +40,7 @@ const MongoStore = require('connect-mongo');
 const sessionOptions = session({
   store: MongoStore.create({
     clientPromise: dbConnection,
+    dbName:DB_NAME,
   }),
   secret: SESSION_SECRET,
   resave: false,
@@ -53,8 +56,9 @@ app.use(sessionOptions)
 app.engine('.hbs', hbs.__express);
 hbs.registerPartials(resolve(__dirname, 'src', 'views', 'partials'));
 
-const flashHasMessage = require('./src/helpers/flashHasMessage')
-hbs.registerHelper('hasMessage', flashHasMessage);
+hbs.registerHelper('arrayContains', function (value) {
+  return value.length > 0;
+});
 
 app.set('views', resolve(__dirname, 'src', 'views'));
 app.set('view engine', '.hbs');
@@ -64,6 +68,7 @@ app.use(flash());
 app.use(flashMessages);
 app.use(checkCsrfError);
 app.use(csrfMiddleware);
+app.use(sessionUserToLocals);
 app.use(routes);
 
 app.on('db_connected', () => {
