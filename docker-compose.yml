@@ -27,6 +27,7 @@ services:
       - ${SERVER_PORT}:${SERVER_PORT}
     volumes:
       - .:/usr/src/app
+      - /usr/src/app/data
     working_dir: /usr/src/app
     command: bash init.sh
     logging:
@@ -44,5 +45,5 @@ networks:
 
 #DOCKER VOLUMES
 volumes:
-  dbdata:
+  data:
     driver: local
