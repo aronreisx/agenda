@@ -14,7 +14,6 @@ const dbConnection = mongoose.connect(`mongodb://${DB_HOST}:${DB_PORT}`, {
   useFindAndModify: false,
   useCreateIndex: true,
 }).then((data) => {
-  console.log(data.connection.getClient());
   app.emit('db_connected');
   console.log('Database connected successfully.');
   return data.connection.getClient();
