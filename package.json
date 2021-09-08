@@ -7,10 +7,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon server.js --ignore public --ignore frontend --trace-warnings",
-    "start":"pm2 start server.js --watch --no-daemon",
+    "start": "pm2 start server.js --watch --no-daemon",
     "w": "webpack -w"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^4.5.0",
     "core-js": "^3.16.2",
