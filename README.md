@@ -46,6 +46,7 @@ This project was developed using the following technologies:
 ## 📃 Project
 
 **`working on a description`**<br>
+**`I'll post screenshots soon`**
 
 ## 💻 How to execute
 
