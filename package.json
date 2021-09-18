@@ -13,28 +13,28 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
-    "connect-mongo": "^4.5.0",
-    "core-js": "^3.16.2",
-    "css-loader": "^6.2.0",
+    "connect-mongo": "^4.6.0",
+    "core-js": "^3.17.3",
+    "css-loader": "^6.3.0",
     "csurf": "^1.11.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "hbs": "^4.1.2",
     "helmet": "^4.6.0",
-    "mongoose": "^5.13.7",
+    "mongoose": "^6.0.6",
     "pm2": "^5.1.1",
     "regenerator-runtime": "^0.13.9",
     "style-loader": "^3.2.1",
     "validator": "^13.6.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
     "babel-loader": "^8.2.2",
     "nodemon": "^2.0.12",
-    "webpack": "^5.51.1",
+    "webpack": "^5.53.0",
     "webpack-cli": "^4.8.0"
   }
 }
