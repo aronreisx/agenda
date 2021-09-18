@@ -45,14 +45,14 @@ This project was developed using the following technologies:
 
 ## 📃 Project
 
-**`working on a description`**<br>
-**`I'll post screenshots soon`**
+This project is a simple CRUD application to save and manage contacts information. It uses containerization as infrastructure to provide backend and database, so there's no need to install any other technology than Docker locally.
 
 ## 💻 How to execute
 
 ### Requirements
 
-To follow the process bellow is essential to have [Git](https://git-scm.com) and [Docker](https://www.docker.com/) installed:
+To follow the process bellow you must have [Git](https://git-scm.com) and [Docker](https://www.docker.com/) installed.
+Git isn't essential to start the application, in case you haven't it installed you can just download the repository through browser and execute the last setup step bellow inside the app folder.
 
 ### Setting up the application
 
@@ -67,7 +67,7 @@ $ cd agenda
 ```
 
 ```bash
-# Install the dependecies
+# Start the application
 $ docker-compose up
 ```
 
